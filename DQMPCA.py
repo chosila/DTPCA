@@ -95,9 +95,11 @@ class DQMPCA(object):
         trunc = np.zeros((xf.shape[0], self._hist_cleaner.n_good_bins))
         trunc[:,:n_components] = xf[:,:n_components]
 
-        #ixf = self.pca.inverse_transform(trunc)
+        ixf = self.pca.inverse_transform(trunc)
+        print(trunc.shape)
+
         ## making it a transpose seems to fix the dimension mismatch
-        ixf = self.pca.inverse_transform(trunc.transpose())
+        #ixf = self.pca.inverse_transform(trunc.transpose())
         
         if not restore_bad_bins:
             return ixf

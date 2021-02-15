@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 import root_numpy
 
 #Define variables for bulk training
-year = 2016
+year = 2017
 norm_cut = None #10000 ## changing normcut for now because nothing is passing
 max_bins = None
 title = None

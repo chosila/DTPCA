@@ -56,10 +56,10 @@ for plot in plots:
         #Fetch all the 1D histograms into a list
         
         ## i'm keeping the number of runs short so i can debug fast
-        if run < 275000:#272776:
-            continue
-        if run > 275778:
-            break
+        #if run < 275000:#272776:
+        #    continue
+        #if run > 275778:
+        #    break
         
         f = ROOT.TFile.Open(fname)
         
@@ -79,7 +79,7 @@ for plot in plots:
             
             # when use hname in name, only 1 histogram passes the cut. should that be the case?
             # ^^ that's because hname is the name of 1 histogram. should we be doing that? 
-            if True:#hname in name: #True:
+            if hname in name: #True:
                 #h = roothist.numpy()
                 h = roothist
 
