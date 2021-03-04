@@ -13,10 +13,14 @@ import glob
 import matplotlib.pyplot as plt
 import root_numpy
 
+
+from HistCollection import HistCollection
+from info import norm_cut
+from HistCleaner import HistCleaner
 ## execute needed files                                                                                                                     
-exec(open("./info.py").read())
-exec(open("./HistCollection.py").read())
-exec(open("./HistCleaner.py").read())
+#exec(open("./info.py").read())
+#exec(open("./HistCollection.py").read())
+#exec(open("./HistCleaner.py").read())
 
 class DQMPCA(object):
     """Class to perform PCA specifically on HistCollection objects"""

@@ -20,10 +20,14 @@ import matplotlib.pyplot as plt
 import root_numpy
 
 ## execute needed files
-exec(open("./info.py").read())
-exec(open("./HistCollection.py").read())
-exec(open('./HistCleaner.py').read())
-exec(open('./DQMPCA.py').read())
+#exec(open("./info.py").read())
+#exec(open("./HistCollection.py").read())
+#exec(open('./HistCleaner.py').read())
+#exec(open('./DQMPCA.py').read())
+from info import year, plots, norm_cut, max_bins, lumi_json, hpath,HistogramIntegral, getTH1, title
+from HistCollection import HistCollection
+from DQMPCA import DQMPCA
+
 
 for plot in plots:
     runs = []
@@ -31,6 +35,12 @@ for plot in plots:
     dname = plot[0]
     hname = plot[1]
     fnames = []
+
+
+    print(dname)
+    print(hname)
+
+
 
 
     if year ==2018:
@@ -42,7 +52,8 @@ for plot in plots:
         fnames =glob.glob("/eos/cms/store/group/comm_dqm/DQMGUI_data/Run2017/SingleMuon/*/DQM_V0001_R000*__SingleMuon__Run2017*-17Nov2017-v1__DQMIO.root")
     
     if year ==2016:
-        fnames = glob.glob("/eos/cms/store/group/comm_dqm/DQMGUI_data/Run2016/SingleMuon/*/DQM_V0001_R000*__SingleMuon__Run2016*-21Feb2020_UL2016_HIPM-v1__DQMIO.root")
+        fnames = glob.glob("/eos/cms/store/group/comm_dqm/DQMGUI_data/Run2016/SingleMuon/*/DQM_V0001_R000*__SingleMuon__Run2016F*-21Feb2020_UL2016_HIPM-v1__DQMIO.root")
+        #fnames = glob.glob("/eos/cms/store/group/comm_dqm/DQMGUI_data/Run2016/SingleMuon/*/DQM_V0001_R000*__SingleMuon__Run2016*-21Feb2020_UL2016_HIPM-v1__DQMIO.root")
     
     for fname in fnames:
         run = int(fname.split("/")[-1].split("__")[0][-6:])
@@ -66,7 +77,7 @@ for plot in plots:
         histograms = getTH1(f, hpath.format(run))
         
         #histograms =f[hpath.format(run)].allitems(filterclass=lambda cls: issubclass(cls, uproot_methods.classes.TH1.Methods))
-        print(run)
+        #print(run)
         
         
         
@@ -132,9 +143,11 @@ for plot in plots:
     pca = DQMPCA(norm_cut=10000, sse_ncomps=(1,2,3))
     pca.fit(hc)
     pkl_dir = os.path.join("DT_models",str(year))
-    os.system("mkdir -p "+pkl_dir)
-    pkl_filename = "{0}_{1}.pkl".format(dname, hname)
+    #os.system("mkdir -p "+pkl_dir)
+    #pkl_filename = "{0}_{1}.pkl".format(dname, hname)
+    pkl_filename = f'{hname}.pkl'
     pkl_filename = os.path.join(pkl_dir,pkl_filename)
+    os.makedirs(os.path.dirname(pkl_filename), exist_ok=True)
     with open(pkl_filename, 'wb') as file:
         #Protocol can be set higher once the code is moved to Python 3
         pickle.dump(pca, file,protocol = 2)

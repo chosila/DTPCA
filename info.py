@@ -28,7 +28,21 @@ max_bins = None
 title = None
 lumi_json = None
 hpath = "DQMData/Run {}/DT/Run summary"
-plots = [("02-Segments/Wheel0/Sector1/Station1","T0_FromSegm_W0_Sec1_St1")]#,("Station2","T0_FromSegm_W0_Sec1_St2"),("Station3","T0_FromSegm_W0_Sec1_St3"),("Station4","T0_FromSegm_W0_Sec1_St4")]
+#plots = [("02-Segments/Wheel0/Sector1/Station1","T0_FromSegm_W0_Sec1_St1")]
+plots = []
+
+for w in [0,1,2]:
+    for sec in range(1,15):
+        for st in range(1,5):
+            plots.append((f'02-Segments/Wheel{w}/Sector{sec}/Station{st}',f'T0_FromSegm_W{w}_Sec{sec}_St{st}'))
+
+## define what plots to train
+## each tuple is (dirname, histname)
+#plots = [('02-Segments','SegmentGlbSummary'),('02-Segments','segmentSummary')]
+#for i in ['-1','-2','0','1','2']:
+#    plots.append(('02-Segments',f'segmentSummary_W_{i}'))
+
+#,("Station2","T0_FromSegm_W0_Sec1_St2"),("Station3","T0_FromSegm_W0_Sec1_St3"),("Station4","T0_FromSegm_W0_Sec1_St4")]
 
 #HistogramIntegral returns the total number of events
 def HistogramIntegral(hist):

@@ -14,7 +14,9 @@ import matplotlib.pyplot as plt
 import root_numpy
 
 ## execute needed files
-exec(open("./info.py").read())
+#exec(open("./info.py").read())
+from info import year
+from HistCleaner import HistCleaner
 
 print(year)
 

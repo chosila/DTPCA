@@ -14,8 +14,10 @@ import matplotlib.pyplot as plt
 import root_numpy
 
 ## execute needed files
-exec(open("./info.py").read())
-exec(open("./HistCollection.py").read())
+#exec(open("./info.py").read())
+#exec(open("./HistCollection.py").read())
+
+
 
 class HistCleaner(object):
     """ 
