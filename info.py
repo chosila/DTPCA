@@ -21,28 +21,27 @@ import glob
 import matplotlib.pyplot as plt
 import root_numpy
 
+
+
 #Define variables for bulk training
-year = 2017
-norm_cut = None #10000 ## changing normcut for now because nothing is passing
+year = 2018
+norm_cut = 10000 ## changing normcut for now because nothing is passing
 max_bins = None
 title = None
 lumi_json = None
 hpath = "DQMData/Run {}/DT/Run summary"
 #plots = [("02-Segments/Wheel0/Sector1/Station1","T0_FromSegm_W0_Sec1_St1")]
-plots = []
+plots=list() #[('02-Segments/Wheel0/Sector13/Station1', 'T0_FromSegm_W0_Sec13_St1')]
 
-for w in [0,1,2]:
-    for sec in range(1,15):
-        for st in range(1,5):
-            plots.append((f'02-Segments/Wheel{w}/Sector{sec}/Station{st}',f'T0_FromSegm_W{w}_Sec{sec}_St{st}'))
+for W in [0,1]:
+    for Sec in range(1,7):
+        for St in [1,2,3,4]:
+            plots.append((f'02-Segments/Wheel{W}/Sector{Sec}/Station{St}', f'T0_FromSegm_W{W}_Sec{Sec}_St{St}'))
+
+
 
 ## define what plots to train
 ## each tuple is (dirname, histname)
-#plots = [('02-Segments','SegmentGlbSummary'),('02-Segments','segmentSummary')]
-#for i in ['-1','-2','0','1','2']:
-#    plots.append(('02-Segments',f'segmentSummary_W_{i}'))
-
-#,("Station2","T0_FromSegm_W0_Sec1_St2"),("Station3","T0_FromSegm_W0_Sec1_St3"),("Station4","T0_FromSegm_W0_Sec1_St4")]
 
 #HistogramIntegral returns the total number of events
 def HistogramIntegral(hist):
@@ -63,7 +62,7 @@ def getTH1(d, h):
                     yield i
             else:
                 if obj.InheritsFrom('TH1'):
-                    yield (h+objName, root_numpy.hist2array(obj, return_edges=True))
+                    yield (h+'/'+objName, root_numpy.hist2array(obj, return_edges=True))
         else: 
             
             continue

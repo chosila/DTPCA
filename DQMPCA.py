@@ -17,10 +17,6 @@ import root_numpy
 from HistCollection import HistCollection
 from info import norm_cut
 from HistCleaner import HistCleaner
-## execute needed files                                                                                                                     
-#exec(open("./info.py").read())
-#exec(open("./HistCollection.py").read())
-#exec(open("./HistCleaner.py").read())
 
 class DQMPCA(object):
     """Class to perform PCA specifically on HistCollection objects"""
@@ -73,8 +69,10 @@ class DQMPCA(object):
             norms = np.sum(cleaned, axis=1)
 
         cleaned = cleaned[norms>self.norm_cut, :]
+
         self.pca.fit(cleaned)        
         self.__is_fit = True
+
 
         if self.sse_ncomps is not None:
             self.sse_cuts = {}
@@ -99,6 +97,8 @@ class DQMPCA(object):
         trunc = np.zeros((xf.shape[0], self._hist_cleaner.n_good_bins))
         trunc[:,:n_components] = xf[:,:n_components]
 
+
+
         ixf = self.pca.inverse_transform(trunc)
         print(trunc.shape)
 
@@ -115,7 +115,11 @@ class DQMPCA(object):
             cleaned = hdata.hdata
         else:
             cleaned = self._hist_cleaner.transform(hdata)        
+
+
         xf = self.transform(cleaned)
+
+
         ixf = self.inverse_transform(xf, n_components=n_components)
         
         
