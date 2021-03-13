@@ -33,10 +33,13 @@ hpath = "DQMData/Run {}/DT/Run summary"
 #plots = [("02-Segments/Wheel0/Sector1/Station1","T0_FromSegm_W0_Sec1_St1")]
 plots=list() #[('02-Segments/Wheel0/Sector13/Station1', 'T0_FromSegm_W0_Sec13_St1')]
 
-for W in [0,1]:
-    for Sec in range(1,7):
-        for St in [1,2,3,4]:
-            plots.append((f'02-Segments/Wheel{W}/Sector{Sec}/Station{St}', f'T0_FromSegm_W{W}_Sec{Sec}_St{St}'))
+for Sec in range(1,15):
+    for St in [1,2,3,4]:
+        plots.append((f'02-Segments/Wheel0/Sector{Sec}/Station{St}', f'T0_FromSegm_W0_Sec{Sec}_St{St}'))
+
+for Sec in range(1,7):
+    for St in [1,2,3,4]:
+        plots.append((f'02-Segments/Wheel1/Sector{Sec}/Station{St}', f'T0_FromSegm_W1_Sec{Sec}_St{St}'))
 
 
 
