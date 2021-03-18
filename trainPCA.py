@@ -91,18 +91,13 @@ for plot in plots:
     else:
         hists = pickle.load(open('hists.pkl', 'rb'))
     
-    print(len(hists))
-    if len(hists) < 100:
-        print('not enough stats')
-        print('num hist passing: ', len(hists))
-        PCAnotMade.append(hname)
-        continue
+#    if len(hists) < 100 : #< 100:
+#        print('not enough stats')
+#        print('num hist passing: ', len(hists))
+#        PCAnotMade.append((hname,len(hists)))
+#        continue
 
 
-    #    print(hists)
-    #    if np.count_nonzero(hists) == 0:
-    #        histzeros.append(f'{dname}/{hname}')
-    #        continue
 
     try:
         #Make rows even length if jagged
